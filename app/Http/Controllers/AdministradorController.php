@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdministradorController extends Controller
+class ProdutoController extends Controller
 {
     // Cadastro de Produtos
     public function cadastroProdutos(ProdutoFormRequest $request)
@@ -33,7 +33,7 @@ class AdministradorController extends Controller
 
     public function updateProdutos(ProdutoFormRequest $request)
     {
-        $produto = Administrador::find($request->id);
+        $produto = Produto::find($request->id);
         if (!isset($produto)) {
             return response()->json([
                 'status' => false,
@@ -65,7 +65,7 @@ class AdministradorController extends Controller
     public function pesquisaProdutos($pesquisa)
     {
 
-        $query = Administrador::query();
+        $query = Produto::query();
 
         $query->where(function ($q) use ($pesquisa) {
             $q->where('nome', 'like', '%' . $pesquisa . '%')
