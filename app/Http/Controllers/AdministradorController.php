@@ -9,7 +9,7 @@ class AdministradorController extends Controller
     // Cadastro de Produtos
     public function cadastroProdutos(ProdutoFormRequest $request)
     {
-        $produto = Administrador::create([
+        $produto = produto::create([
 
             'nome' => $request->nome,
             'preco' => $request->preco,
@@ -24,45 +24,6 @@ class AdministradorController extends Controller
     }
 
 
-
-
-
-
-    public function cadastrarADM(Request $request)
-    {
-
-
-
-        $cliente = Cliente::create([
-
-
-            'nome' => $request->nome,
-            'email' => $request->email,
-            'cpf' => $request->cpf,
-            'password' => Hash::make($request->password)
-
-
-        ]);
-
-        if (isset($cliente)) {
-
-            return response()->json([
-                'status' => true,
-                'title' => 'Cadastrado',
-                'message' => 'Cliente Cadastrado com sucesso',
-                'data' => $cliente
-
-            ], 200);
-        }
-
-        return response()->json([
-            'status' => false,
-            'title' => 'Erro',
-            'message' => 'Cliente não foi cadastrado',
-            'data' => $cliente
-
-        ], 200);
-    }
 
 
 
