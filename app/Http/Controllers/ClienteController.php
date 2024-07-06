@@ -17,7 +17,7 @@ class ClienteController extends Controller
         $cliente = Cliente::create([
 
 
-            'nome' => $request->nome,
+            'nome' => $request->nome,   
             'email' => $request->email,
             'cpf' => $request->cpf,
             'password' => Hash::make($request->password)
