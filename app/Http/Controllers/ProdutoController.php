@@ -34,7 +34,7 @@ class ProdutoController extends Controller
 
 
 
-    public function updateProdutos(ProdutoFormRequestUpdate $request)
+    public function updateProduto(ProdutoFormRequestUpdate $request)
     {
         $produto = Produto::find($request->id);
         if (!isset($produto)) {
@@ -127,6 +127,26 @@ class ProdutoController extends Controller
         ]);
     }
 
+
+
+
+    public function excluirproduto($id)
+    {
+        $produto = Produto::find($id);
+
+        if (!isset($produto)) {
+            return response()->json([
+                'status' => false,
+                'message' => "produto não encontrado"
+            ]);
+        }
+
+        $produto->delete();
+        return response()->json([
+            'status' => true,
+            'message' => "produto excluido com sucesso"
+        ]);
+    }
 
 
 }

@@ -5,7 +5,6 @@ use App\Models\Funcionario;
 use App\Http\Requests\FuncionarioFormRequest;
 
 use App\Http\Requests\FuncionarioFormRequestUpdate;
-use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -144,7 +143,7 @@ class FuncionarioController extends Controller
     public function recuperarSenha(Request $request)
     {
 
-        $funcionario = Cliente::where('email', '=', $request->email)->first();
+        $funcionario = funcionario::where('email', '=', $request->email)->first();
 
         if (!isset($funcionario)) {
             return response()->json([
@@ -154,7 +153,7 @@ class FuncionarioController extends Controller
             ]);
         }
 
-        $funcionario = Cliente::where('cpf', '=', $request->cpf)->first();
+        $funcionario = funcionario::where('cpf', '=', $request->cpf)->first();
 
         if (!isset($funcionario)) {
             return response()->json([
@@ -181,6 +180,44 @@ class FuncionarioController extends Controller
         ]);
 }
 
+
+
+
+public function retornarTodosFuncionarios()
+{
+    $funcionario = Funcionario::all();
+
+    if (count($funcionario) > 0) {
+        return response()->json([
+            'status' => true,
+            'data' => $funcionario
+        ]);
+    }
+    return response()->json([
+        'status' => false,
+        'data' => 'Não há nenhum funcionario registrado'
+    ]);
+}
+
+
+
+public function excluirfuncionario($id)
+    {
+        $funcionario = Funcionario::find($id);
+
+        if (!isset($funcionario)) {
+            return response()->json([
+                'status' => false,
+                'message' => "funcionario não encontrado"
+            ]);
+        }
+
+        $funcionario->delete();
+        return response()->json([
+            'status' => true,
+            'message' => "funcionario excluido com sucesso"
+        ]);
+    }
 
 
 }

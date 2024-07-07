@@ -9,7 +9,7 @@ use App\Models\Administrador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ProdutoController extends Controller
+class AdiministradorController extends Controller
 {
     public function cadastrarAdiministrador(Request $request)
     {
