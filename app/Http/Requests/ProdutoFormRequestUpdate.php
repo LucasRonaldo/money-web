@@ -22,7 +22,7 @@ class ProdutoFormRequestUpdate extends FormRequest
     public function rules()
 {
     return [
-        'nome' => 'max:120|min:5',
+        'nome' => ' unique:produtos,nome|max:120|min:5',
         'categoria' => 'max:120|min:3',
         'preco' => 'numeric|min:0',
         'ingredientes' => 'max:500|min:10',

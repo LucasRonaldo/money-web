@@ -24,8 +24,8 @@ class ClienteUpdateFormRequest extends FormRequest
         return [
             'nome' => 'max:120|min:5',
             'celular' => 'max:11|min:11',
-            'email' => 'unique:cadastro_clientes,email|max:120',
-            'cpf' => 'unique:cadastro_clientes,cpf|max:11|min:11',
+            'email' => 'unique:clientes,email|max:120',
+            'cpf' => 'unique:clientes,cpf|max:11|min:11',
             'data_nascimento' => 'date_format:d/m/Y',
             'cidade' => 'max:120|min:5',
             'estado' => 'max:2|min:2',
