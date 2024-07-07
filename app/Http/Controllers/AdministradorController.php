@@ -2,88 +2,182 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdiministradorFormRequest;
+use App\Http\Requests\AdiministradorFormRequestUpdate;
+
+use App\Models\Administrador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProdutoController extends Controller
 {
-    // Cadastro de Produtos
-    public function cadastroProdutos(ProdutoFormRequest $request)
+    public function cadastrarAdiministrador(Request $request)
     {
-        $produto = produto::create([
 
-            'nome' => $request->nome,
-            'preco' => $request->preco,
-            'ingredientes' => $request->ingredientes,
-            'categoria' => $request->categoria,
+        
+
+        $administrador = Administrador::create([
+
+
+            'nome' => $request->nome,   
+            'email' => $request->email,
+            'cpf' => $request->cpf,
+            'password' => Hash::make($request->password)
+
+
         ]);
-        return response()->json([
-            "success" => true,
-            "message" => "Cadastrado com sucesso",
-            "data" => $produto
-        ], 200);
-    }
 
+        if(isset($administrador)){
 
-
-
-
-
-
-
-
-    public function updateProdutos(ProdutoFormRequest $request)
-    {
-        $produto = Produto::find($request->id);
-        if (!isset($produto)) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Produto não encontrado'
-            ]);
-        }
-        if (isset($request->nome)) {
-            $produto->nome = $request->nome;
-        }
-        if (isset($request->preco)) {
-            $produto->preco = $request->preco;
-        }
-        if (isset($request->ingredientes)) {
-            $produto->ingredientes = $request->ingredientes;
-        }
-        if (isset($request->categoria)) {
-            $produto->categoria = $request->categoria;
-        }
-
-        $produto->update();
-        return response()->json([
-            'status' => true,
-            'message' => 'Atualizado com sucesso'
-        ]);
-    }
-
-
-
-    public function pesquisaProdutos($pesquisa)
-    {
-
-        $query = Produto::query();
-
-        $query->where(function ($q) use ($pesquisa) {
-            $q->where('nome', 'like', '%' . $pesquisa . '%')
-                ->orWhere('preco', 'like', '%' . $pesquisa . '%')
-                ->orWhere('ingredientes', 'like', '%' . $pesquisa . '%')
-                ->orWhere('categoria', 'like', '%' . $pesquisa . '%');
-        });
-
-        $produto = $query->get();
-        if (count($produto) > 0) {
             return response()->json([
                 'status' => true,
-                'data' => $produto
+                'title'=>'Cadastrado',
+                'message' => 'administrador Cadastrado com sucesso',
+                'data' => $administrador
+    
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'title'=>'Erro',
+            'message' => 'administrador não foi cadastrado',
+            'data' => $administrador
+
+        ], 200);
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function editarAdministrador(AdiministradorFormRequestUpdate $request)
+    {
+        $administrador = Administrador::find($request->id);
+        if (!isset($administrador)) {
+            return response()->json([
+                'status' => false,
+                'message' => "administrador não encontrado"
+            ]);
+        }
+
+        if (isset($request->nome)) {
+            $administrador->nome = $request->nome;
+        }
+
+        if (isset($request->celular)) {
+            $administrador->celular = $request->celular;
+        }
+        if (isset($request->email)) {
+            $administrador->email = $request->email;
+        }
+        if (isset($request->cpf)) {
+            $administrador->cpf = $request->cpf;
+        }
+        if (isset($request->dataNascimento)) {
+            $administrador->dataNascimento = $request->dataNascimento;
+        }
+        if (isset($request->cidade)) {
+            $administrador->cidade = $request->cidade;
+        }
+        if (isset($request->estado)) {
+            $administrador->estado = $request->estado;
+        }
+        if (isset($request->pais)) {
+            $administrador->pais = $request->pais;
+        }
+        if (isset($request->rua)) {
+            $administrador->rua = $request->rua;
+        }
+        if (isset($request->numero)) {
+            $administrador->numero = $request->numero;
+        }
+        if (isset($request->bairro)) {
+            $administrador->bairro = $request->bairro;
+        }
+        if (isset($request->cep)) {
+            $administrador->cep = $request->cep;
+        }
+        if (isset($request->complemento)) {
+            $administrador->complemento = $request->complemento;
+        }
+
+
+
+
+        $administrador->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'administrador atualizado.'
+        ]);
+    }
+
+
+
+    
+    public function pesquisarPorIdAdiministrador($id)
+    {
+        $administrador = Administrador::find($id);
+
+        if (!isset($administrador)) {
+            return response()->json([
+                'status' => false,
+                'message' => "administrador não cadastrado"
             ]);
         }
         return response()->json([
-            'status' => false,
-            'data' => "Nenhum resultado encontrado"
+            'status' => true,
+            'data' => $administrador
         ]);
     }
-}
+
+
+
+    public function recuperarSenha(Request $request)
+    {
+
+        $administrador = Administrador::where('email', '=', $request->email)->first();
+
+        if (!isset($administrador)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Email invalido"
+
+            ]);
+        }
+
+        $administrador = Administrador::where('cpf', '=', $request->cpf)->first();
+
+        if (!isset($administrador)) {
+            return response()->json([
+                'status' => false,
+                'message' => "cpf nao encontrado"
+
+            ]);
+        }
+        if (!isset($request->password)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Escreva a nova senha"
+
+            ]);
+        }
+        if (isset($request->password)) {
+            $administrador->password = $request->password; //Hash::make( $request->password );
+        }
+        $administrador->update();
+
+        return response()->json([
+            'status' => true,
+            'password' => Hash::make($administrador->password)
+        ]);
+}}
