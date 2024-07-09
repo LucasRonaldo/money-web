@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteFormRequest;
 use App\Http\Requests\ClienteUpdateFormRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
@@ -9,15 +10,15 @@ use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
-    public function cadastrarCliente(Request $request)
+    public function cadastrarCliente(ClienteFormRequest $request)
     {
 
-        
+
 
         $cliente = Cliente::create([
 
 
-            'nome' => $request->nome,   
+            'nome' => $request->nome,
             'email' => $request->email,
             'cpf' => $request->cpf,
             'password' => Hash::make($request->password)
@@ -25,26 +26,24 @@ class ClienteController extends Controller
 
         ]);
 
-        if(isset($cliente)){
+        if (isset($cliente)) {
 
             return response()->json([
                 'status' => true,
-                'title'=>'Cadastrado',
+                'title' => 'Cadastrado',
                 'message' => 'Cliente Cadastrado com sucesso',
                 'data' => $cliente
-    
+
             ], 200);
         }
 
         return response()->json([
             'status' => false,
-            'title'=>'Erro',
+            'title' => 'Erro',
             'message' => 'Cliente não foi cadastrado',
             'data' => $cliente
 
         ], 200);
-
-        
     }
 
     public function retornarTodosClientes()
@@ -269,4 +268,5 @@ class ClienteController extends Controller
             'status' => true,
             'password' => Hash::make($cliente->password)
         ]);
-}}
+    }
+}
