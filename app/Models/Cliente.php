@@ -24,6 +24,7 @@ class Cliente extends Model
         'cep',
         'complemento',
         'password',
+        'confirm_password'
 
 
     ];

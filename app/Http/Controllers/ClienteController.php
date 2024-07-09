@@ -21,10 +21,12 @@ class ClienteController extends Controller
             'nome' => $request->nome,
             'email' => $request->email,
             'cpf' => $request->cpf,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'confirm_password' => $request->confirm_password
 
 
         ]);
+       // dd($cliente->confirm_password);
 
         if (isset($cliente)) {
 

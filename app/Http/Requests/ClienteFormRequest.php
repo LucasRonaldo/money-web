@@ -38,6 +38,7 @@ class ClienteFormRequest extends FormRequest
             'cep' => 'max:11|min:11',
             'complemento' => 'required|max:120',
             'password' => 'required',
+            'confirm_password'=> 'required'
 
         ];
     }
@@ -72,7 +73,8 @@ class ClienteFormRequest extends FormRequest
             'cep.min' => 'O CEP deve ter exatamente 11 dígitos.',
             'complemento.required' => 'O complemento do endereço é obrigatório.',
             'complemento.max' => 'O complemento do endereço não pode exceder 120 caracteres.',
-            'password.required' => 'A senha é obrigatória.'
+            'password.required' => 'A senha é obrigatória.',
+            'confirm_password.required' => 'Digite a senha novamente'
         ];
     }
 }

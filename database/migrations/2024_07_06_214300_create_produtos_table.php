@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->string('email',100)->unique()->nullable(false);
-            $table->string('categoria',100)->unique()->nullable(false);
-            $table->decimal('preco',100)->unique()->nullable(false);
-            $table->string('ingredientes',100)->unique()->nullable(false);
+            $table->string('nome',120)->nullable(false);
+            $table->string('categoria',100)->nullable(false);
+            $table->decimal('preco')->nullable(false);
+            $table->string('ingredientes',500)->nullable(false);
             $table->timestamps();
         });
     }
