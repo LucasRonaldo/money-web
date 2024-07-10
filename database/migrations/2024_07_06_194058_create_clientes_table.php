@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('cep',100);
             $table->string('complemento',100);
             $table->string('password',100);
-            $table->string('confirm_password',100);
+            $table->string('confirmar_password',100);
             $table->timestamps();
         });
     }

@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\AdiministradorController;
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\Controller;
 
 
 // ------------------------------------ADIMINISTRADOR---------------------------
 
 //-----------------------------------PERFIL:ADM------------------------------
-route::post('adm/adiministrador/cadastro', [AdiministradorController::class, 'cadastrarAdiministrador']);
-route::put('adm/adiministrador/editarCadastro', [AdiministradorController::class, 'editarAdministrador']);
-route::post('adm/adiministrador/pesquisaId', [AdiministradorController::class, 'pesquisarPorIdAdiministrador']);
-route::post('adm/adiministrador/recuperarSenha', [AdiministradorController::class, 'recuperarSenha']);
+route::post('adm/adiministrador/cadastro', [AdministradorController::class, 'cadastrarAdiministrador']);
+route::put('adm/adiministrador/editarCadastro', [AdministradorController::class, 'editarAdministrador']);
+route::post('adm/adiministrador/pesquisaId', [AdministradorController::class, 'pesquisarPorIdAdiministrador']);
+route::post('adm/adiministrador/recuperarSenha', [AdministradorController::class, 'recuperarSenha']);
 
 
 //-----------------------------------PERFIL:PRODUTO------------------------------

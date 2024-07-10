@@ -24,6 +24,7 @@ class Administrador extends Model
         'cep',
         'complemento',
         'password',
+        'confirmar_password',
 
 
     ];

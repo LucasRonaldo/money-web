@@ -9,44 +9,40 @@ use App\Models\Administrador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AdiministradorController extends Controller
+class AdministradorController extends Controller
 {
-    public function cadastrarAdiministrador(Request $request)
+    public function cadastrarAdministrador(AdiministradorFormRequest $request)
     {
+        
+        if ($request->password !== $request->confirmar_password) {
+            return response()->json([
+                'status' => false,
+                'message' => 'A senha deve ser igual',
+            ], 400);
+        }
 
         
-
         $administrador = Administrador::create([
-
-
             'nome' => $request->nome,   
             'email' => $request->email,
             'cpf' => $request->cpf,
-            'password' => Hash::make($request->password)
-
-
+            'password' => Hash::make($request->password),
         ]);
 
-        if(isset($administrador)){
-
+        if ($administrador) {
             return response()->json([
                 'status' => true,
-                'title'=>'Cadastrado',
-                'message' => 'administrador Cadastrado com sucesso',
+                'title' => 'Cadastrado',
+                'message' => 'Administrador cadastrado com sucesso',
                 'data' => $administrador
-    
-            ], 200);
+            ], 201);
         }
 
         return response()->json([
             'status' => false,
-            'title'=>'Erro',
-            'message' => 'administrador não foi cadastrado',
-            'data' => $administrador
-
-        ], 200);
-
-        
+            'title' => 'Erro',
+            'message' => 'Administrador não foi cadastrado',
+        ], 500);
     }
 
 
