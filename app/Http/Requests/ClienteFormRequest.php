@@ -28,7 +28,7 @@ class ClienteFormRequest extends FormRequest
             'celular' => 'max:11|min:11',
             'email' => 'required|unique:clientes,email|max:120'.$this->id,
             'cpf' => 'required|unique:clientes,cpf|max:11|min:11'.$this->id,
-            'data_nascimento' => 'required|date_format:d/m/Y',
+            'data_nascimento' => '|date_format:d/m/Y',
             'cidade' => 'max:120|min:5',
             'estado' => 'max:2|min:2',
             'pais' => 'max:120',
@@ -36,9 +36,9 @@ class ClienteFormRequest extends FormRequest
             'numero' => 'max:120',
             'bairro' => 'max:120|min:5',
             'cep' => 'max:11|min:11',
-            'complemento' => 'required|max:120',
-            'password' => 'required',
-            'confirmar_password'=> 'required'
+            'complemento' => '|max:120',
+            'password' => 'required'
+           // 'confirmar_password'=> 'required'
 
         ];
     }
@@ -73,8 +73,8 @@ class ClienteFormRequest extends FormRequest
             'cep.min' => 'O CEP deve ter exatamente 11 dígitos.',
             'complemento.required' => 'O complemento do endereço é obrigatório.',
             'complemento.max' => 'O complemento do endereço não pode exceder 120 caracteres.',
-            'password.required' => 'A senha é obrigatória.',
-            'confirmar_password.required' => 'Digite a senha novamente'
+            'password.required' => 'A senha é obrigatória.'
+           // 'confirmar_password.required' => 'Digite a senha novamente'
         ];
     }
 }

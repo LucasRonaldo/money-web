@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
+
+    public function cadastrarClienteView()
+    {
+        return view('CadastrarCliente');
+    }
+
     public function cadastrarCliente(ClienteFormRequest $request)
     {
 
@@ -21,8 +27,7 @@ class ClienteController extends Controller
             'nome' => $request->nome,
             'email' => $request->email,
             'cpf' => $request->cpf,
-            'password' => Hash::make($request->password),
-            'confirmar_password' => $request->confirmar_password
+            'password' => Hash::make($request->password)
 
 
         ]);
@@ -45,7 +50,7 @@ class ClienteController extends Controller
             'message' => 'Cliente não foi cadastrado',
             'data' => $cliente
 
-        ], 200);
+        ]);
     }
 
     public function retornarTodosClientes()

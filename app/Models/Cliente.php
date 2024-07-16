@@ -23,8 +23,8 @@ class Cliente extends Model
         'bairro',
         'cep',
         'complemento',
-        'password',
-        'confirmar_password'
+        'password'
+       // 'confirmar_password'
 
 
     ];
