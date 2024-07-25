@@ -13,22 +13,20 @@ class AdministradorController extends Controller
 {
     public function cadastrarAdministrador(AdiministradorFormRequest $request)
     {
-        
         if ($request->password !== $request->confirmar_password) {
             return response()->json([
                 'status' => false,
-                'message' => 'A senha deve ser igual',
+                'message' => 'A senha e a confirmação de senha devem ser iguais',
             ], 400);
         }
-
-        
+    
         $administrador = Administrador::create([
             'nome' => $request->nome,   
             'email' => $request->email,
             'cpf' => $request->cpf,
             'password' => Hash::make($request->password),
         ]);
-
+    
         if ($administrador) {
             return response()->json([
                 'status' => true,
@@ -37,14 +35,13 @@ class AdministradorController extends Controller
                 'data' => $administrador
             ], 201);
         }
-
+    
         return response()->json([
             'status' => false,
             'title' => 'Erro',
             'message' => 'Administrador não foi cadastrado',
         ], 500);
     }
-
 
 
 

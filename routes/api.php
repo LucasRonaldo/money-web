@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 // ------------------------------------ADIMINISTRADOR---------------------------
 
 //-----------------------------------PERFIL:ADM------------------------------
-route::post('adm/adiministrador/cadastro', [AdministradorController::class, 'cadastrarAdiministrador']);
+route::post('adm/adiministrador/cadastro', [AdministradorController::class, 'cadastrarAdministrador']);
 route::put('adm/adiministrador/editarCadastro', [AdministradorController::class, 'editarAdministrador']);
 route::post('adm/adiministrador/pesquisaId', [AdministradorController::class, 'pesquisarPorIdAdiministrador']);
 route::post('adm/adiministrador/recuperarSenha', [AdministradorController::class, 'recuperarSenha']);

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Contracts\Validation\Validator;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProdutoFormRequest extends FormRequest
 {
@@ -27,6 +29,14 @@ class ProdutoFormRequest extends FormRequest
         'preco' => 'required|numeric|min:0',
         'ingredientes' => 'required|max:500|min:10',
     ];
+}
+
+public function failedValidation(Validator $validator)
+{
+    throw new HttpResponseException(response()->json([
+        'success' => false,
+        'error' => $validator->errors()
+    ]));
 }
 
 public function messages()

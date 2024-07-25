@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 class AdiministradorFormRequest extends FormRequest
 {
     /**
@@ -30,16 +33,26 @@ class AdiministradorFormRequest extends FormRequest
             'cidade' => 'max:120|min:5',
             'estado' => 'max:2|min:2',
             'pais' => 'max:120',
-            'rua' => 'max:11|min:11',
+            'rua' => 'max:100|min:5',
             'numero' => 'max:120',
             'bairro' => 'max:120|min:5',
-            'cep' => 'max:11|min:11',
+            'cep' => 'max:9|min:9',
             'complemento' => '|max:120',
             'password' => 'required',
-            'confirmar_password'=>'required'
+            'confirmar_password'=>'required_with:confirmar_password|same:password'
 
         ];
     }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'error' => $validator->errors()
+        ]));
+    }
+
+    
     public function messages()
     {
         return [
@@ -67,8 +80,8 @@ class AdiministradorFormRequest extends FormRequest
             'numero.max' => 'O número do endereço não pode exceder 120 caracteres.',
             'bairro.max' => 'O nome do bairro não pode exceder 120 caracteres.',
             'bairro.min' => 'O nome do bairro deve ter no mínimo 5 caracteres.',
-            'cep.max' => 'O CEP deve ter exatamente 11 dígitos.',
-            'cep.min' => 'O CEP deve ter exatamente 11 dígitos.',
+            'cep.max' => 'O CEP deve ter exatamente 9 dígitos.',
+            'cep.min' => 'O CEP deve ter exatamente 9 dígitos.',
             'complemento.required' => 'O complemento do endereço é obrigatório.',
             'complemento.max' => 'O complemento do endereço não pode exceder 120 caracteres.',
             'password.required' => 'A senha é obrigatória.',
