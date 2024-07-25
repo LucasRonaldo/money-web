@@ -32,12 +32,12 @@ class AdiministradorFormRequestUpdate extends FormRequest
             'cidade' => 'max:120|min:5',
             'estado' => 'max:2|min:2',
             'pais' => 'max:120',
-            'rua' => 'max:11|min:11',
+            'rua' => 'max:100|min:5',
             'numero' => 'max:120',
             'bairro' => 'max:120|min:5',
-            'cep' => 'max:11|min:11',
+            'cep' => 'max:8|min:8',
             'complemento' => 'max:120',
-            'password' => 'required',
+            
 
         ];
     }
@@ -69,13 +69,13 @@ class AdiministradorFormRequestUpdate extends FormRequest
             'estado.max' => 'A sigla do estado deve ter exatamente 2 caracteres.',
             'estado.min' => 'A sigla do estado deve ter exatamente 2 caracteres.',
             'pais.max' => 'O nome do país não pode exceder 120 caracteres.',
-            'rua.max' => 'O nome da rua não pode exceder 11 caracteres.',
-            'rua.min' => 'O nome da rua deve ter no mínimo 11 caracteres.',
+            'rua.max' => 'O nome da rua não pode exceder 100 caracteres.',
+            'rua.min' => 'O nome da rua deve ter no mínimo 5 caracteres.',
             'numero.max' => 'O número do endereço não pode exceder 120 caracteres.',
             'bairro.max' => 'O nome do bairro não pode exceder 120 caracteres.',
             'bairro.min' => 'O nome do bairro deve ter no mínimo 5 caracteres.',
-            'cep.max' => 'O CEP deve ter exatamente 11 dígitos.',
-            'cep.min' => 'O CEP deve ter exatamente 11 dígitos.',
+            'cep.max' => 'O CEP deve ter exatamente 8 dígitos.',
+            'cep.min' => 'O CEP deve ter exatamente 8 dígitos.',
             'complemento.required' => 'O complemento do endereço é obrigatório.',
             'complemento.max' => 'O complemento do endereço não pode exceder 120 caracteres.',
         ];
