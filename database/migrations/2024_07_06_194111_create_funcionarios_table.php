@@ -16,17 +16,17 @@ return new class extends Migration
             $table->string('email',100)->unique()->nullable(false);
             $table->string('cpf',11)->unique()->nullable(false);
             $table->string('nome',100)->nullable(true);
-            $table->string('celular',100)->nullable(true);;
-            $table->date('dataNascimento')->nullable(true);;
-            $table->text('cidade',10000)->nullable(true);;
-            $table->string('estado',100)->nullable(true);;
-            $table->string('pais',100)->nullable(true);;
-            $table->string('rua',100)->nullable(true);;
-            $table->string('numero',100)->nullable(true);;
-            $table->string('bairro',100)->nullable(true);;
-            $table->string('cep',100)->nullable(true);;
-            $table->string('complemento',100)->nullable(true);;
-            $table->string('password',100)->nullable(true);;
+            $table->string('celular',100)->nullable(true);
+            $table->date('dataNascimento')->nullable(true);
+            $table->text('cidade',10000)->nullable(true);
+            $table->string('estado',100)->nullable(true);
+            $table->string('pais',100)->nullable(true);
+            $table->string('rua',100)->nullable(true);
+            $table->string('numero',100)->nullable(true);
+            $table->string('bairro',100)->nullable(true);
+            $table->string('cep',100)->nullable(true);
+            $table->string('complemento',100)->nullable(true);
+            $table->string('password',100)->nullable(true);
             $table->timestamps();
         });
     }
