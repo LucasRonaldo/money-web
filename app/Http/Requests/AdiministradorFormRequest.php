@@ -26,18 +26,9 @@ class AdiministradorFormRequest extends FormRequest
     {
         return [
             'nome' => 'required|max:120|min:5',
-            'celular' => 'max:11|min:11',
             'email' => 'required|unique:administradors,email|max:120'.$this->id,
             'cpf' => 'required|unique:administradors,cpf|max:11|min:11'.$this->id,
-            'data_nascimento' => 'date_format:d/m/Y',
-            'cidade' => 'max:120|min:5',
-            'estado' => 'max:2|min:2',
-            'pais' => 'max:120',
-            'rua' => 'max:100|min:5',
-            'numero' => 'max:120',
-            'bairro' => 'max:120|min:5',
-            'cep' => 'max:9|min:9',
-            'complemento' => '|max:120',
+            
             'password' => 'required',
             'confirmar_password'=>'required_with:confirmar_password|same:password'
 
