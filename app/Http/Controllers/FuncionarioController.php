@@ -18,6 +18,7 @@ class FuncionarioController extends Controller
 
         $funcionario = Funcionario::create([
 
+            
 
             'nome' => $request->nome,   
             'email' => $request->email,
