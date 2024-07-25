@@ -85,7 +85,8 @@ class AdiministradorFormRequest extends FormRequest
             'complemento.required' => 'O complemento do endereço é obrigatório.',
             'complemento.max' => 'O complemento do endereço não pode exceder 120 caracteres.',
             'password.required' => 'A senha é obrigatória.',
-            'confirmar_password.required' => 'Digite a senha novamente'
+            'confirmar_password.required' => 'Digite a senha novamente',
+            'confirmar_password.same' => 'Senhas não coincidem'
         ];
     }
 }

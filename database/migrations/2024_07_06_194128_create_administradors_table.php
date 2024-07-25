@@ -26,8 +26,7 @@ return new class extends Migration
             $table->string('bairro',100)->nullable(true);
             $table->string('cep',100)->nullable(true);
             $table->string('complemento',100)->nullable(true);
-            $table->string('password',100)->nullable(false);;
-            $table->string('confirmar_password',100)->nullable(false);;
+            $table->string('password',100)->nullable(false);
             $table->timestamps();
         });
     }
